@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: radial-gradient(circle at top, #1b0f2e, #07040d);
+        }
+
+        /* ===== BOOK ===== */
+        .book {
+            display: flex;
+            width: 820px;
+            height: 560px;
+            border-radius: 14px;
+            box-shadow: 0 0 45px rgba(186, 85, 255, 0.45);
+        }
+
+        /* ===== LEFT PAGE ===== */
+        .left-page {
+            width: 50%;
+            background: linear-gradient(135deg, #8a4bff, #4dd6ff);
+            padding: 50px;
+            color: #0e0522;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .left-page h1 {
+            font-size: 38px;
+            margin-bottom: 18px;
+        }
+
+        .left-page p {
+            font-size: 15px;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+
+        /* ===== RIGHT PAGE ===== */
+        .right-page {
+            width: 50%;
+            background: rgba(25, 12, 45, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 30px 36px;
+            color: #f2eaff;
+        }
+
+        /* ===== TITLE ===== */
+        h2 {
+            text-align: center;
+            margin-bottom: 14px;
+            background: linear-gradient(90deg, #e1b7ff, #9fdcff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 22px;
+        }
+
+        /* ===== LABEL ===== */
+        label {
+            font-size: 13px;
+            color: #e6d8ff;
+            display: block;
+            margin-top: 10px;
+        }
+
+        /* ===== INPUTS ===== */
+        input {
+            width: 100%;
+            padding: 9px 11px;
+            margin-top: 4px;
+            border-radius: 6px;
+            border: 1px solid rgba(200, 160, 255, 0.35);
+            background: rgba(15, 8, 30, 0.9);
+            color: #ffffff;
+            transition: 0.3s;
+        }
+
+        input:hover {
+            border-color: #b56bff;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #d9a7ff;
+            box-shadow: 0 0 4px rgba(186, 85, 255, 0.7);
+        }
+
+        /* ===== BUTTON ===== */
+        .submit-wrap {
+            margin-top: 22px;
+        }
+
+        .submit-btn {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            padding: 8px;
+            border: none;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #7a3cff, #c77dff);
+            color: #140022;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(186, 85, 255, 0.8);
+            transition: 0.4s;
+        }
+
+        .submit-btn span {
+            position: relative;
+            z-index: 2;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+            transform: translateX(-100%);
+            transition: 0.6s;
+        }
+
+        .submit-btn:hover::before {
+            transform: translateX(100%);
+        }
+
+        .submit-btn:hover {
+            box-shadow: 0 0 8px rgba(210, 150, 255, 1);
+            transform: scale(1);
+        }
+
+        /* ===== EXTRA LINK ===== */
+        .extra-link {
+            text-align: center;
+            margin-top: 18px;
+            font-size: 13px;
+        }
+
+        .extra-link a {
+            color: #caa6ff;
+            text-decoration: none;
+        }
+
+        .extra-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="book">
+
+        <!-- LEFT SIDE -->
+        <div class="left-page">
+            <h1>Welcome!</h1>
+            <p>
+                Register now and join a secure,
+                futuristic platform designed just for you ✨
+            </p>
+        </div>
+
+        <!-- RIGHT SIDE FORM -->
+        <div class="right-page">
+            <form method="post">
+                {% csrf_token %}
+
+                <h2>Registration</h2>
+
+                <label>Candidate Name</label>
+                <input type="text" name="CandidateName" required>
+
+                <label>Email</label>
+                <input type="email" name="Email" required>
+
+                <label>Password</label>
+                <input type="password" name="Password" required>
+
+                <label>Confirm Password</label>
+                <input type="password" name="ConfirmPassword" required>
+
+                <label>Contact Number</label>
+                <input type="number" name="ContactNumber" pattern="[0-9]{10}" required>
+
+                <div class="submit-wrap">
+                    <button type="submit" name="submit" class="submit-btn">
+                        <span>REGISTER</span>
+                    </button>
+                </div>
+
+                <div class="extra-link">
+                    Already Have Account?
+                    <a href="/loginpage/">Login</a>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

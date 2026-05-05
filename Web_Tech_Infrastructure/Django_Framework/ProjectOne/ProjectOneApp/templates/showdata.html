@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    <table border="2">
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Contact</td>
+        </tr>
+
+        {% for info in page_obj %}
+        <tr>
+            <td>{{info.id}}</td>
+            <td>{{info.candidate_name}}</td>
+            <td>{{info.email}}</td>
+            <td>{{info.contact_number}}</td>
+        </tr>
+
+        {% endfor %}
+    </table>
+
+    <div class="pagination">
+        <span>
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        </span>
+    
+        {% if page_obj.has_previous %}
+        <a href="?page=1">First</a>
+        <a href="?page={{ page_obj }}">Previous</a>
+        {% endif %}
+    
+        {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+        <strong>{{ num }}</strong>
+        {% else %}
+        <a href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+        {% endfor %}
+    
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+        {% endif %}
+    </div>
+</body>
+</html>

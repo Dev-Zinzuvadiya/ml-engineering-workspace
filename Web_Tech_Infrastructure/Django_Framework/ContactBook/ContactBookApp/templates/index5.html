@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Member Registration</title>
+
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Open+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #5d4037;
+            --secondary-color: #8d6e63;
+            --accent-color: #d7ccc8;
+            --light-color: #f5f1ee;
+            --dark-color: #3e2723;
+            --gold-color: #c9a96e;
+            --green-color: #4caf50;
+            --shadow-color: rgba(61, 39, 35, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f9f7f3;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(circle at 15% 20%, rgba(201, 169, 110, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(93, 64, 55, 0.06) 0%, transparent 40%);
+        }
+
+        /* Decorative library elements */
+        .library-decoration {
+            position: fixed;
+            z-index: -1;
+            opacity: 0.6;
+            border-radius: 4px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 3s ease-in-out;
+        }
+
+        .book-1 {
+            top: 15%;
+            left: 5%;
+            width: 50px;
+            height: 70px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            transform: rotate(10deg);
+            animation: float 8s infinite ease-in-out;
+        }
+
+        .book-2 {
+            top: 20%;
+            right: 7%;
+            width: 65px;
+            height: 85px;
+            background: linear-gradient(-45deg, var(--gold-color), #b89446);
+            transform: rotate(-5deg);
+            animation: float 10s infinite ease-in-out;
+            animation-delay: 1s;
+        }
+
+        .book-3 {
+            bottom: 20%;
+            left: 8%;
+            width: 55px;
+            height: 75px;
+            background: linear-gradient(135deg, var(--secondary-color), #a1887f);
+            transform: rotate(15deg);
+            animation: float 9s infinite ease-in-out;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(var(--initial-rotate, 10deg));
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(calc(var(--initial-rotate, 10deg) + 5deg));
+            }
+        }
+
+        /* Main registration container */
+        .registration-container {
+            display: flex;
+            max-width: 1100px;
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px var(--shadow-color);
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Left panel - Library introduction */
+        .library-intro {
+            flex: 1;
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            color: white;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .library-intro::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .library-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .library-icon {
+            font-size: 3rem;
+            color: var(--gold-color);
+            margin-right: 15px;
+        }
+
+        .library-name {
+            font-family: 'Crimson Text', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+
+        .library-intro h1 {
+            font-family: 'Crimson Text', serif;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .library-intro p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            max-width: 90%;
+        }
+
+        .benefits-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .benefits-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+        }
+
+        .benefits-list i {
+            color: var(--gold-color);
+            margin-right: 12px;
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Right panel - Registration form */
+        .registration-form-panel {
+            flex: 1.1;
+            background-color: white;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .form-header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .form-header h2 {
+            font-family: 'Crimson Text', serif;
+            color: var(--dark-color);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .form-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 3px;
+            background-color: var(--gold-color);
+            border-radius: 2px;
+        }
+
+        .form-header p {
+            color: var(--secondary-color);
+            font-size: 1rem;
+            margin-top: 20px;
+        }
+
+        /* Form styling */
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-color);
+            font-size: 0.95rem;
+        }
+
+        .input-with-icon {
+            position: relative;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px 50px 15px 18px;
+            border: 2px solid var(--accent-color);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: #fefcf9;
+            color: var(--dark-color);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(141, 110, 99, 0.2);
+            background-color: white;
+        }
+
+        .input-icon {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+        }
+
+        .toggle-password {
+            cursor: pointer;
+            transition: color 0.3s ease;
+            z-index: 10;
+        }
+
+        .toggle-password:hover {
+            color: var(--primary-color);
+        }
+
+        /* Password strength indicator */
+        .password-strength {
+            margin-top: 8px;
+            display: none;
+        }
+
+        .strength-bar {
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 5px;
+        }
+
+        .strength-fill {
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease, background-color 0.3s ease;
+        }
+
+        .strength-text {
+            font-size: 0.85rem;
+            color: var(--secondary-color);
+        }
+
+        /* Submit button */
+        .submit-btn {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 18px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+            margin-top: 10px;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(93, 64, 55, 0.2);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* User info in top right */
+        .logged_user_box {
+            position: fixed;
+            top: 20px;
+            right: 25px;
+            z-index: 1000;
+        }
+
+        .logged_user_name {
+            background: rgba(93, 64, 55, 0.9);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 14px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logged_user_name::before {
+            content: "\f007";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--gold-color);
+        }
+
+        /* Form validation styling */
+        .form-control.valid {
+            border-color: var(--green-color);
+        }
+
+        .form-control.invalid {
+            border-color: #f44336;
+        }
+
+        .validation-icon {
+            position: absolute;
+            right: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .valid-icon {
+            color: var(--green-color);
+            opacity: 1;
+        }
+
+        .invalid-icon {
+            color: #f44336;
+            opacity: 1;
+        }
+
+        /* Error message */
+        .error-message {
+            color: #f44336;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 900px) {
+            .registration-container {
+                flex-direction: column;
+                max-width: 600px;
+            }
+
+            .library-intro,
+            .registration-form-panel {
+                padding: 40px 30px;
+            }
+
+            .book-1,
+            .book-2,
+            .book-3 {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .library-intro,
+            .registration-form-panel {
+                padding: 30px 25px;
+            }
+
+            .library-intro h1 {
+                font-size: 2.2rem;
+            }
+
+            .form-header h2 {
+                font-size: 2rem;
+            }
+
+            .logged_user_box {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin-bottom: 20px;
+                width: 100%;
+            }
+
+            .logged_user_name {
+                justify-content: center;
+                border-radius: 12px;
+            }
+        }
+
+        /* Animation for form elements */
+        .form-group {
+            animation: slideInRight 0.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        .form-group:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .form-group:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .form-group:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .form-group:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .submit-btn {
+            animation-delay: 0.5s;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+
+    <script>
+        // Password visibility toggle
+        function togglePassword() {
+            const passwordInput = document.getElementById("password");
+            const icon = document.querySelector(".toggle-password");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+            } else {
+                passwordInput.type = "password";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+            }
+        }
+
+        // Password strength indicator
+        function checkPasswordStrength(password) {
+            let strength = 0;
+            const strengthBar = document.getElementById('strengthFill');
+            const strengthText = document.getElementById('strengthText');
+            const strengthContainer = document.getElementById('passwordStrength');
+
+            if (!password) {
+                strengthContainer.style.display = 'none';
+                return;
+            }
+
+            strengthContainer.style.display = 'block';
+
+            // Length check
+            if (password.length >= 8) strength += 25;
+
+            // Contains numbers
+            if (/\d/.test(password)) strength += 25;
+
+            // Contains lowercase
+            if (/[a-z]/.test(password)) strength += 25;
+
+            // Contains uppercase
+            if (/[A-Z]/.test(password)) strength += 25;
+
+            // Update strength bar
+            strengthBar.style.width = strength + '%';
+
+            // Update color and text
+            if (strength < 50) {
+                strengthBar.style.backgroundColor = '#f44336';
+                strengthText.textContent = 'Weak password';
+                strengthText.style.color = '#f44336';
+            } else if (strength < 75) {
+                strengthBar.style.backgroundColor = '#ff9800';
+                strengthText.textContent = 'Moderate password';
+                strengthText.style.color = '#ff9800';
+            } else {
+                strengthBar.style.backgroundColor = '#4caf50';
+                strengthText.textContent = 'Strong password';
+                strengthText.style.color = '#4caf50';
+            }
+        }
+
+        // Form validation
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.querySelector('form');
+            const inputs = form.querySelectorAll('input');
+            const passwordInput = document.getElementById('password');
+
+            // Add password strength check
+            if (passwordInput) {
+                passwordInput.addEventListener('input', function () {
+                    checkPasswordStrength(this.value);
+                    validateField(this);
+                });
+            }
+
+            // Add validation to all inputs
+            inputs.forEach(input => {
+                input.addEventListener('input', function () {
+                    validateField(this);
+                });
+
+                input.addEventListener('blur', function () {
+                    validateField(this);
+                });
+            });
+
+            function validateField(field) {
+                const validIcon = field.parentNode.querySelector('.valid-icon');
+                const invalidIcon = field.parentNode.querySelector('.invalid-icon');
+                const errorMessage = field.parentNode.parentNode.querySelector('.error-message');
+
+                // Reset icons and error
+                if (validIcon) validIcon.classList.remove('valid-icon');
+                if (invalidIcon) invalidIcon.classList.remove('invalid-icon');
+                if (errorMessage) errorMessage.style.display = 'none';
+                field.classList.remove('valid', 'invalid');
+
+                // Skip validation if field is empty
+                if (!field.value.trim()) {
+                    return false;
+                }
+
+                let isValid = false;
+                let errorMsg = '';
+
+                // Field-specific validation
+                switch (field.name) {
+                    case 'Name':
+                        isValid = field.value.trim().length >= 2;
+                        errorMsg = 'Name must be at least 2 characters';
+                        break;
+                    case 'Email':
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        isValid = emailRegex.test(field.value);
+                        errorMsg = 'Please enter a valid email address';
+                        break;
+                    case 'Password':
+                        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/;
+                        isValid = passwordRegex.test(field.value);
+                        errorMsg = 'Password must be at least 8 characters with letters and numbers';
+                        break;
+                    case 'ContactNumber':
+                        const phoneRegex = /^\d{10}$/;
+                        isValid = phoneRegex.test(field.value);
+                        errorMsg = 'Please enter a valid 10-digit phone number';
+                        break;
+                    default:
+                        isValid = true;
+                }
+
+                // Apply visual feedback
+                if (isValid) {
+                    field.classList.add('valid');
+                    if (validIcon) validIcon.classList.add('valid-icon');
+                } else {
+                    field.classList.add('invalid');
+                    if (invalidIcon) invalidIcon.classList.add('invalid-icon');
+                    if (errorMessage) {
+                        errorMessage.textContent = errorMsg;
+                        errorMessage.style.display = 'block';
+                    }
+                }
+
+                return isValid;
+            }
+
+            // Form submission handler
+            form.addEventListener('submit', function (e) {
+                let allValid = true;
+
+                inputs.forEach(input => {
+                    if (!validateField(input)) {
+                        allValid = false;
+                    }
+                });
+
+                if (!allValid) {
+                    e.preventDefault();
+                    // Show error message
+                    alert('Please fix the errors in the form before submitting.');
+                } else {
+                    // In a real application, this would submit the form
+                    // For demo purposes, we'll show a success message
+                    e.preventDefault();
+                    alert('Registration successful! Welcome to our library community.');
+                    form.reset();
+
+                    // Reset validation icons
+                    inputs.forEach(input => {
+                        input.classList.remove('valid', 'invalid');
+                        const validIcon = input.parentNode.querySelector('.valid-icon');
+                        const invalidIcon = input.parentNode.querySelector('.invalid-icon');
+                        if (validIcon) validIcon.classList.remove('valid-icon');
+                        if (invalidIcon) invalidIcon.classList.remove('invalid-icon');
+                    });
+
+                    // Hide password strength indicator
+                    const strengthContainer = document.getElementById('passwordStrength');
+                    if (strengthContainer) {
+                        strengthContainer.style.display = 'none';
+                    }
+                }
+            });
+
+            // Add ripple effect to submit button
+            const submitBtn = document.querySelector('.submit-btn');
+            if (submitBtn) {
+                submitBtn.addEventListener('click', function (e) {
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+
+                    const ripple = document.createElement('span');
+                    ripple.style.cssText = `
+                        position: absolute;
+                        border-radius: 50%;
+                        background: rgba(255, 255, 255, 0.5);
+                        transform: scale(0);
+                        animation: ripple 0.6s linear;
+                        width: ${size}px;
+                        height: ${size}px;
+                        top: ${y}px;
+                        left: ${x}px;
+                        pointer-events: none;
+                    `;
+
+                    this.style.position = 'relative';
+                    this.style.overflow = 'hidden';
+                    this.appendChild(ripple);
+
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+
+                // Add CSS for ripple animation
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes ripple {
+                        to {
+                            transform: scale(4);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <!-- Decorative floating books -->
+    <div class="library-decoration book-1" style="--initial-rotate: 10deg;"></div>
+    <div class="library-decoration book-2" style="--initial-rotate: -5deg;"></div>
+    <div class="library-decoration book-3" style="--initial-rotate: 15deg;"></div>
+
+    <!-- User info (if logged in) -->
+    {% if logged_user %}
+    <div class="logged_user_box">
+        <div class="logged_user_name">
+            Admin : {{ logged_user.names }}
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="registration-container">
+        <!-- Left panel - Library introduction -->
+        <div class="library-intro">
+            <div class="library-logo">
+                <div class="library-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div class="library-name">Bibliotheca</div>
+            </div>
+
+            <h1>Join Our Library Community</h1>
+            <p>Register today to unlock access to thousands of books, digital resources, and exclusive member benefits.
+                Start your literary journey with us.</p>
+
+            <ul class="benefits-list">
+                <li><i class="fas fa-book"></i> Access to 50,000+ physical & digital books</li>
+                <li><i class="fas fa-laptop"></i> Digital library & research databases</li>
+                <li><i class="fas fa-calendar-alt"></i> Member-only events & workshops</li>
+                <li><i class="fas fa-users"></i> Join book clubs & reading groups</li>
+                <li><i class="fas fa-clock"></i> Extended borrowing periods</li>
+            </ul>
+        </div>
+
+        <!-- Right panel - Registration form -->
+        <div class="registration-form-panel">
+            <div class="form-header">
+                <h2>New Member Registration</h2>
+                <p>Fill in your details to create a library account</p>
+            </div>
+
+            <form method="post" id="registrationForm">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <div class="input-with-icon">
+                        <input type="text" name="Name" class="form-control" placeholder="Enter your full name" required>
+                        <i class="fas fa-user input-icon"></i>
+                        <i class="fas fa-check validation-icon valid-icon"></i>
+                        <i class="fas fa-times validation-icon invalid-icon"></i>
+                    </div>
+                    <div class="error-message">Name must be at least 2 characters</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <div class="input-with-icon">
+                        <input type="email" name="Email" class="form-control" placeholder="your.email@example.com"
+                            required>
+                        <i class="fas fa-envelope input-icon"></i>
+                        <i class="fas fa-check validation-icon valid-icon"></i>
+                        <i class="fas fa-times validation-icon invalid-icon"></i>
+                    </div>
+                    <div class="error-message">Please enter a valid email address</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <div class="input-with-icon">
+                        <input type="password" name="Password" id="password" class="form-control"
+                            placeholder="Create a secure password" required>
+                        <i class="fas fa-lock input-icon"></i>
+                        <i class="fas fa-eye toggle-password input-icon" onclick="togglePassword()"></i>
+                        <i class="fas fa-check validation-icon valid-icon"></i>
+                        <i class="fas fa-times validation-icon invalid-icon"></i>
+                    </div>
+                    <div class="password-strength" id="passwordStrength">
+                        <div class="strength-bar">
+                            <div class="strength-fill" id="strengthFill"></div>
+                        </div>
+                        <div class="strength-text" id="strengthText"></div>
+                    </div>
+                    <div class="error-message">Password must be at least 8 characters with letters and numbers</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Contact Number</label>
+                    <div class="input-with-icon">
+                        <input type="tel" name="ContactNumber" class="form-control" placeholder="10-digit phone number"
+                            required>
+                        <i class="fas fa-phone input-icon"></i>
+                        <i class="fas fa-check validation-icon valid-icon"></i>
+                        <i class="fas fa-times validation-icon invalid-icon"></i>
+                    </div>
+                    <div class="error-message">Please enter a valid 10-digit phone number</div>
+                </div>
+
+                <button type="submit" name="submit" class="submit-btn">
+                    <i class="fas fa-book-reader me-2"></i> REGISTER AS MEMBER
+                </button>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>

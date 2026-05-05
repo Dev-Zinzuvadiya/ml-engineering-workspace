@@ -1,0 +1,53 @@
+// Environment & Safety (VERY Important) //
+
+-> python -m venv 'venv'                    (-- Create virtual Environment)
+-> venv\Scripts\activate                    (-- Activate in Windows)
+-> deactivate                               (-- Deactivate)
+-> pip install package_name                 (-- Install inside virtual Environment)
+
+
+
+// Regular Use (Daily Commands) //
+
+-> pip install 'package_name'               (-- Install Packages) 
+-> pip install --upgrade package_name       (-- Upgrade a Packages)
+-> pip uninstall package_name               (-- Uninstall a Packages)
+-> pip list                                 (-- List installed Packages)
+-> pip show package_name                    (-- Show details about Package)
+
+
+
+// Sometimes Used but Super Useful //
+
+-> pip install -r requirements.txt          (-- Install from requirements file)
+-> pip freeze > requirements.txt            (-- Create requirements file)
+-> pip list --outdated                      (-- Check outdated Packages)
+-> pip install package_name == 1.2.3        (-- Install specific version)
+-> pip install --no-cache-dir package_name  (-- Install without cache (fix weird issues))
+
+-> pip list --outdated
+-> pip install --upgrade package_name       (-- Upgrade all Packages (Manual loop))
+
+
+
+// Rare but MUST-KNOW //
+
+-> pip check                                        (-- Fix broken dependencies)
+-> pip install package_name --verbose               (-- Debug installation issues)
+-> pip install --ignore-installed package_name      (-- Ignore installed packages (force reinstall))
+-> pip install --force--reinstall package_name      (-- Force reinstall)
+-> pip install --user package_name                  (-- Install for current 'user' only)
+-> python -m pip install package_name               (-- Use specific Python version)
+
+
+
+// Advanced and Rare Power Moves //
+
+-> pip download package_name                            (-- Download packages (without installing))
+-> pip install git+https://github.com/user/repo.git     (-- Install from GitHub (fake url))
+-> pip install ./folder_name                            (-- Install from local file)
+-> pip search package_name                              (-- Search packages (deprecated but Sometimes works))
+
+-> pip freeze > packages.txt                            (-- Remove packages and Convert into packages.txt)
+-> pip uninstall -r packages.txt -y	                    (-- uninstall all Packages, -Y is Auto 'Yes' for Confirmanations)
+-> del packages.txt                                     (-- Delete all Created files)
