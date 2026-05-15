@@ -1,0 +1,122 @@
+// Repository Setup & Connection (VERY Important) //
+
+-> git init                                      (-- Initialize Git Repository)
+-> git clone repo_url                            (-- Clone Existing Repository)
+-> git remote add origin repo_url                (-- Connect Local Repo to GitHub)
+-> git remote -v                                 (-- Check Connected Remote URLs)
+
+
+
+// Regular Use (Daily Commands) //
+
+-> git status                                    (-- Check File Status)
+-> git add file_name                             (-- Add Specific File)
+-> git add .                                     (-- Add All Modified/New Files)
+-> git commit -m "message"                       (-- Save Snapshot with Message)
+-> git push origin main                          (-- Push Code to GitHub)
+-> git pull origin main                          (-- Pull Latest Changes)
+-> git log                                       (-- Show Commit History)
+
+
+
+// File & Folder Tracking //
+
+-> git mv old_name new_name                      (-- Rename File/Folder with Tracking)
+-> git rm file_name                              (-- Delete File with Git Tracking)
+-> git rm -r folder_name                         (-- Delete Folder with Tracking)
+-> git restore file_name                         (-- Restore Deleted/Modified File)
+-> git restore --staged file_name                (-- Remove File from Staging Area)
+
+
+
+// Branching (SUPER IMPORTANT) //
+
+-> git branch                                    (-- Show All Branches)
+-> git branch branch_name                        (-- Create New Branch)
+-> git checkout branch_name                      (-- Switch Branch)
+-> git checkout -b branch_name                   (-- Create + Switch Branch)
+-> git merge branch_name                         (-- Merge Branch into Current Branch)
+-> git branch -d branch_name                     (-- Delete Branch)
+
+
+
+// Undo & Recovery Commands //
+
+-> git reset --soft HEAD~1                       (-- Undo Last Commit Keep Changes)
+-> git reset --hard HEAD~1                       (-- Undo Last Commit Delete Changes)
+-> git revert commit_id                          (-- Create Revert Commit Safely)
+-> git checkout -- file_name                     (-- Discard File Changes)
+-> git clean -fd                                 (-- Remove Untracked Files/Folders)
+
+
+
+// GitHub & Remote Management //
+
+-> git push -u origin main                       (-- Push + Set Upstream Branch)
+-> git remote remove origin                      (-- Remove Connected Remote)
+-> git remote set-url origin new_repo_url        (-- Change Repository URL)
+-> git fetch                                     (-- Download Remote Changes Only)
+
+
+
+// .gitignore & Cache Cleanup //
+
+-> touch .gitignore                              (-- Create .gitignore File)
+-> git rm -r --cached .                          (-- Remove Cached Tracked Files)
+-> git rm -r --cached __pycache__                (-- Stop Tracking Python Cache)
+-> git rm -r --cached .ipynb_checkpoints         (-- Stop Tracking Jupyter Checkpoints)
+
+
+
+// Inspection & Debugging //
+
+-> git diff                                      (-- Show File Differences)
+-> git diff --staged                             (-- Show Staged Differences)
+-> git show commit_id                            (-- Show Specific Commit Details)
+-> git blame file_name                           (-- Show Who Changed Each Line)
+
+
+
+// Stashing (Temporary Save System) //
+
+-> git stash                                     (-- Temporarily Save Changes)
+-> git stash list                                (-- Show Saved Stashes)
+-> git stash apply                               (-- Restore Last Stash)
+-> git stash drop                                (-- Delete Last Stash)
+
+
+
+// Rare but MUST-KNOW //
+
+-> git reflog                                    (-- Full Hidden Git History)
+-> git cherry-pick commit_id                     (-- Copy Specific Commit)
+-> git tag v1.0                                  (-- Create Version Tag)
+-> git push origin --tags                        (-- Push Tags to GitHub)
+
+
+
+// Advanced & Power Moves //
+
+-> git commit --amend                            (-- Edit Last Commit)
+-> git rebase main                               (-- Cleaner Branch History)
+-> git squash                                    (-- Combine Multiple Commits)
+-> git config --global user.name "Your Name"     (-- Set Git Username)
+-> git config --global user.email "your@email"   (-- Set Git Email)
+
+
+
+// Emergency Commands //
+
+-> git reset --hard origin/main                  (-- Reset Local Repo to GitHub Version)
+-> git pull --rebase                             (-- Pull Without Merge Commit)
+-> git push --force                              (-- Force Push (DANGEROUS ⚠️))
+-> git clone --depth 1 repo_url                  (-- Shallow Clone Faster)
+
+
+
+// Useful Workflow Example //
+
+-> git status
+-> git add .
+-> git commit -m "Added feature scaling notebook"
+-> git push origin main
