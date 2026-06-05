@@ -9,8 +9,9 @@ __pycache__/
 venv/
 .env/
 
-# VS Code
+# VS Code & PDFs
 .vscode/
+**/PDFs/
 
 # OS files
 .DS_Store
